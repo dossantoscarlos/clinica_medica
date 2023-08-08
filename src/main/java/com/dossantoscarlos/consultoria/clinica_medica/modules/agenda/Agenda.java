@@ -2,8 +2,8 @@ package com.dossantoscarlos.consultoria.clinica_medica.modules.agenda;
 
 import java.util.UUID;
 
-import com.dossantoscarlos.consultoria.clinica_medica.modules.consulta.ConsultaModel;
-import com.dossantoscarlos.consultoria.clinica_medica.modules.medico.MedicoModel;
+import com.dossantoscarlos.consultoria.clinica_medica.modules.consulta.Consulta;
+import com.dossantoscarlos.consultoria.clinica_medica.modules.medico.Medico;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,16 +17,16 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name = "agendas")
-public class AgendaModel {
+public class Agenda {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private UUID id;
 	
 	@ManyToOne
-	private MedicoModel medico;
+	private Medico medico;
 	
 	@ManyToOne
-	private ConsultaModel consulta;
+	private Consulta consulta;
 	
 }

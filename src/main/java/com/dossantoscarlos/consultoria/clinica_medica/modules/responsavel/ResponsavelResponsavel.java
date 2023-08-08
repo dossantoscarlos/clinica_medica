@@ -4,4 +4,4 @@ import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ResponsavelResponsavel extends JpaRepository<ResponsavelModel, UUID> {}
+public interface ResponsavelResponsavel extends JpaRepository<Responsavel, UUID> {}

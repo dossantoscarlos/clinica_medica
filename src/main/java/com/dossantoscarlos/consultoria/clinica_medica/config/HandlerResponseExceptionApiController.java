@@ -12,10 +12,17 @@ import org.springframework.web.bind.MissingPathVariableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 @RestControllerAdvice
 public class HandlerResponseExceptionApiController extends MessageError {
-	
+
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    public Map<String, String> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException ex) {
+        return handleMessage(ex.getMessage());
+    }
+
 	@ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     @ExceptionHandler(TransactionSystemException.class)
     public Map<String, String> handleTransactionSystemException(TransactionSystemException ex) {

@@ -4,6 +4,6 @@ import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ConsultaRepository extends JpaRepository<ConsultaModel, UUID> {
+public interface ConsultaRepository extends JpaRepository<Consulta, UUID> {
     
 }

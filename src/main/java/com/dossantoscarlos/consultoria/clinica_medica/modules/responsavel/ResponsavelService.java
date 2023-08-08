@@ -3,18 +3,22 @@ package com.dossantoscarlos.consultoria.clinica_medica.modules.responsavel;
 import java.util.Optional;
 import java.util.UUID;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
+@Component
 public class ResponsavelService {
 	
 	@Autowired
 	ResponsavelResponsavel repository;
 
-	public ResponsavelModel updateAllField(ResponsavelModel responsavel ,UUID id) {
-		Optional<ResponsavelModel> findResponsavel = repository.findById(id);
-		ResponsavelModel responsavelModel = findResponsavel.orElseThrow();
+	public Responsavel updateAllField(Responsavel responsavel , UUID id) {
+		Optional<Responsavel> findResponsavel = repository.findById(id);
+		Responsavel responsavelModel = findResponsavel.orElseThrow();
 		responsavelModel.setNome(responsavel.getNome());
 		responsavelModel.setSobrenome(responsavel.getSobrenome());
 		responsavelModel.setDataNascimento(responsavel.getDataNascimento());
@@ -27,10 +31,9 @@ public class ResponsavelService {
 		return "OK";
 	}
 
-	public ResponsavelModel find(UUID id) {
-		Optional<ResponsavelModel> findResponsavel = repository.findById(id);
-		ResponsavelModel responsavel = findResponsavel.orElseThrow();
-		return responsavel;
+	public Responsavel find(UUID id) {
+		Optional<Responsavel> findResponsavel = repository.findById(id);
+		return findResponsavel.orElseThrow();
 	}
 	
 }

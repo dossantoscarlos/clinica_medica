@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.util.List;
 import java.util.UUID;
 
-import com.dossantoscarlos.consultoria.clinica_medica.modules.agenda.AgendaModel;
+import com.dossantoscarlos.consultoria.clinica_medica.modules.agenda.Agenda;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,7 +18,7 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name="consultas")
-public class ConsultaModel {
+public class Consulta {
     
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -40,5 +40,5 @@ public class ConsultaModel {
     private String pacienteId;
     
     @OneToMany
-    private List<AgendaModel> agenda;
+    private List<Agenda> agenda;
 }

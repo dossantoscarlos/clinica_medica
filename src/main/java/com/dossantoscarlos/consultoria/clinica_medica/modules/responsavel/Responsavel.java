@@ -18,7 +18,7 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name = "responsaveis")
-public class ResponsavelModel {
+public class Responsavel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)

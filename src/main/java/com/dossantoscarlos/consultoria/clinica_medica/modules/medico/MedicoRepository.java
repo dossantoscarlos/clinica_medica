@@ -4,6 +4,6 @@ import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface MedicoRepository extends JpaRepository<MedicoModel, UUID>{
+public interface MedicoRepository extends JpaRepository<Medico, UUID>{
 
 }

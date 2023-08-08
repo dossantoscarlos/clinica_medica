@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/v1/clinica/consulta")
+@Slf4j
+@RequestMapping(value="/consultas", produces = {"application/json"})
+@Tag(name = "Consulta")
 public class ConsultaController {
     
     @Autowired
@@ -25,19 +29,20 @@ public class ConsultaController {
 
     @GetMapping
     @ResponseStatus(code = HttpStatus.ACCEPTED)
-    public List<ConsultaModel> pegaTodasConsulta() {
+    public List<Consulta> pegaTodasConsulta() {
         return service.repository.findAll(); 
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(code = HttpStatus.ACCEPTED)
-    public Optional<ConsultaModel> getConsultaOne( @PathVariable UUID id ) {
-        return service.repository.findById(id); 
+    public Optional<Consulta> getConsultaOne(@PathVariable String id ) {
+        UUID uuid = UUID.fromString(id);
+        return service.repository.findById(uuid);
     }
     
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public ConsultaModel salvaConsulta(@RequestBody @Valid ConsultaModel model) {
+    public Consulta salvaConsulta(@RequestBody @Valid Consulta model) {
         return service.repository.save(model); 
     }
 

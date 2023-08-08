@@ -1,44 +1,38 @@
-package com.dossantoscarlos.consultoria.clinica_medica.modules.medico;
+package com.dossantoscarlos.consultoria.clinica_medica.modules.paciente;
 
-import java.util.List;
+import java.util.Date;
 import java.util.UUID;
-
-import com.dossantoscarlos.consultoria.clinica_medica.modules.agenda.AgendaModel;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "medicos")
-public class MedicoModel {
-
+@Table(name ="pacientes")
+public class Paciente {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private UUID id;
 	
-	@Column
+	@Column()
 	private String nome;
 	
-	@Column
-	private String sobrenome;
+	@Column()
+	private Date dataNascimento;
 	
-	@Column
-	private String crm;
-	
-	@Column
+	@Column()
 	private String rg;
 	
-	@Column 
+	@Column()
 	private String cpf;
 	
-	@OneToMany
-	private List<AgendaModel> agenda;
+	@Column()
+	private String sexoBiologico;
 	
 }

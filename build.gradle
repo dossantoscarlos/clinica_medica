@@ -3,7 +3,6 @@ plugins {
 	id 'org.springframework.boot' version '3.1.1'
 	id 'io.spring.dependency-management' version '1.1.0'
 	id 'org.hibernate.orm' version '6.2.5.Final'
-	id 'org.graalvm.buildtools.native' version '0.9.23'
 }
 
 group = 'com.dosasntoscarlos.consultoria'
@@ -28,6 +27,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'org.postgresql:postgresql'
@@ -46,4 +46,5 @@ hibernate {
 		associationManagement true
 	}
 }
+
 

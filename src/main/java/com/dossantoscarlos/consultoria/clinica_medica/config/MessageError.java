@@ -11,8 +11,7 @@ public class MessageError {
 	public Map<String, String> handleMessage(String error) {
 		Map<String, String> errors = new HashMap<>();
         String fieldName = "Message";
-        String errorMessage = error;
-        errors.put(fieldName, errorMessage);
+        errors.put(fieldName, error);
         return errors;
 	}
 	
@@ -20,8 +19,7 @@ public class MessageError {
         Map<String, String> errors = new HashMap<>();
         ex.getBindingResult().getAllErrors().forEach((error) -> {
             String fieldName = ((FieldError) error).getField();
-            String errorMessage = error.getDefaultMessage();
-            errors.put(fieldName, errorMessage);
+            errors.put(fieldName, error.getDefaultMessage());
         });
         return errors;
 	}

@@ -1,5 +1,6 @@
 package com.dossantoscarlos.consultoria.clinica_medica.modules.paciente;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/clinica/paciente")
+@RequestMapping(value="/pacientes", produces = {"application/json"})
+@Tag(name="Paciente")
 public class PacienteController {
 	
 	@GetMapping
@@ -23,7 +25,7 @@ public class PacienteController {
 	}
 	
 	@PostMapping
-	public String save(@RequestBody PacienteModel paciente ) {
+	public String save(@RequestBody Paciente paciente ) {
 		return " paciente Save";
 	}
 

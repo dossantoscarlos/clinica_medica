@@ -3,6 +3,7 @@ package com.dossantoscarlos.consultoria.clinica_medica.modules.responsavel;
 import java.util.List;
 import java.util.UUID;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,29 +17,30 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping
+@RequestMapping(value = "/responsaveis", produces = {"application/json"})
+@Tag(name="Responsavel")
 public class ResponsavelController {
 
 	@Autowired
 	private ResponsavelService service;
 	
-	@GetMapping
-	public List<ResponsavelModel> findAll(){
+	@GetMapping("/")
+	public List<Responsavel> findAll(){
 		return this.service.repository.findAll();
 	}
 	
 	@GetMapping("/{id}")
-	public ResponsavelModel findBy(@PathVariable UUID id){
+	public Responsavel findBy(@PathVariable UUID id){
 		return this.service.find(id);
 	}
 	
 	@PostMapping
-	public ResponsavelModel create(@Valid @RequestBody ResponsavelModel responsavel) {
+	public Responsavel create(@Valid @RequestBody Responsavel responsavel) {
 		return this.service.repository.saveAndFlush(responsavel);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponsavelModel updateAll(@Valid @RequestBody ResponsavelModel responsavel, @PathVariable UUID id)	{
+	public Responsavel updateAll(@Valid @RequestBody Responsavel responsavel, @PathVariable UUID id)	{
 		return this.service.updateAllField(responsavel, id);
 	}
 	

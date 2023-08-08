@@ -4,6 +4,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,41 +23,73 @@ import org.springframework.web.bind.annotation.RestController;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/v1/clinica/medico")
+@RequestMapping(value="/medicos", produces = {"application/json"})
+@Tag(name="Medico")
 public class MedicoController {
 	
 	@Autowired
 	private MedicoService medicoService;
-	
-	@GetMapping
+
+	@Operation(summary = "Lista todos os medicos", method = "GET")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Busca realizada com sucesso"),
+			@ApiResponse(responseCode = "422", description = "Dados de requisição inválida"),
+			@ApiResponse(responseCode = "400", description = "Parametros inválidos"),
+			@ApiResponse(responseCode = "500", description = "Erro ao realizar busca dos dados"),
+	})
+	@GetMapping()
 	@ResponseStatus(code = HttpStatus.OK)
-	public List<MedicoModel> findAll() {
+	public List<Medico> findAll() {
 		return this.medicoService.repository.findAll();
 	}
 
+	@Operation(summary = "Lista medico especifico", method = "GET")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Busca realizada com sucesso"),
+			@ApiResponse(responseCode = "422", description = "Dados de requisição inválida"),
+			@ApiResponse(responseCode = "400", description = "Parametros inválidos"),
+			@ApiResponse(responseCode = "500", description = "Erro ao realizar busca dos dados"),
+	})
 	@GetMapping("/{id}")
-	@ResponseStatus(code = HttpStatus.OK)
-	public MedicoModel find(@PathVariable UUID id) {
-		 Optional<MedicoModel> findExame = this.medicoService.repository.findById(id);
-		 MedicoModel medico = findExame.orElseThrow();
+	public Medico find(@PathVariable UUID id) {
+		 Optional<Medico> findExame = this.medicoService.repository.findById(id);
+		 Medico medico = findExame.orElseThrow();
 		 return medico;
 	}
-	
-	@PostMapping
-	@ResponseStatus(code = HttpStatus.CREATED)
-	public MedicoModel create (@Valid @RequestBody MedicoModel medico) {
+
+	@Operation(summary = "Cadastra novo medico", method = "GET")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Busca realizada com sucesso"),
+			@ApiResponse(responseCode = "422", description = "Dados de requisição inválida"),
+			@ApiResponse(responseCode = "400", description = "Parametros inválidos"),
+			@ApiResponse(responseCode = "500", description = "Erro ao realizar busca dos dados"),
+	})
+	@PostMapping()
+	public Medico create (@Valid @RequestBody Medico medico) {
 		return this.medicoService.repository.saveAndFlush(medico);
 	}
 
+	@Operation(summary = "Atualiza os dados do medico", method = "GET")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "204", description = "Busca realizada com sucesso"),
+			@ApiResponse(responseCode = "422", description = "Dados de requisição inválida"),
+			@ApiResponse(responseCode = "400", description = "Parametros inválidos"),
+			@ApiResponse(responseCode = "500", description = "Erro ao realizar busca dos dados"),
+	})
 	@PutMapping("/{id}")
-	@ResponseStatus(code=HttpStatus.NO_CONTENT)
-	public MedicoModel update (@RequestBody MedicoModel medico, @PathVariable UUID id) {
+	public Medico update (@RequestBody Medico medico, @PathVariable UUID id) {
 		return this.medicoService.update( medico, id);
 	}
-	
+
+	@Operation(summary = "Deleta medico", method = "GET")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Busca realizada com sucesso"),
+			@ApiResponse(responseCode = "422", description = "Dados de requisição inválida"),
+			@ApiResponse(responseCode = "400", description = "Parametros inválidos"),
+			@ApiResponse(responseCode = "500", description = "Erro ao realizar busca dos dados"),
+	})
 	@DeleteMapping("/{id}")
-	@ResponseStatus(code = HttpStatus.OK)
-	public String delete(@PathVariable UUID id) {	
+	public String delete(@PathVariable UUID id) {
 		return this.medicoService.deleteMedico(id);
 	}
 	
