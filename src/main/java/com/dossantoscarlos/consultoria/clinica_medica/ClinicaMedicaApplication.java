@@ -7,8 +7,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-@OpenAPIDefinition(info = @Info(title = "Clinica medica", version = "1", description = "API desenvolvida para testes do OpenApi"))
-@EnableScheduling
+@OpenAPIDefinition(info = @Info(
+		title = "Clinica medica",
+		version = "1",
+		description = "API desenvolvida para clinica medica ")
+)
 public class ClinicaMedicaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ClinicaMedicaApplication.class, args);

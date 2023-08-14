@@ -9,6 +9,7 @@ import org.springframework.transaction.TransactionSystemException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingPathVariableException;
+import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -23,7 +24,15 @@ public class HandlerResponseExceptionApiController extends MessageError {
         return handleMessage(ex.getMessage());
     }
 
-	@ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(ServletRequestBindingException.class)
+    public Map<String, String> handleServletRequestBindingException(ServletRequestBindingException ex) {
+        return handleMessage(ex.getMessage());
+    }
+
+
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     @ExceptionHandler(TransactionSystemException.class)
     public Map<String, String> handleTransactionSystemException(TransactionSystemException ex) {
 		return handleMessage(ex.getMessage());
