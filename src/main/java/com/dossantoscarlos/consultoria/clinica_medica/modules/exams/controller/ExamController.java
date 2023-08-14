@@ -72,7 +72,7 @@ public class ExamController {
 	
 	@DeleteMapping("/{id}")
     @ResponseStatus(code = HttpStatus.ACCEPTED)
-	public String deleteExame(@PathVariable UUID id) {
+	public String deleteExame(@PathVariable("id") UUID id) {
 		return this.service.delete(id);
 	}
 	
