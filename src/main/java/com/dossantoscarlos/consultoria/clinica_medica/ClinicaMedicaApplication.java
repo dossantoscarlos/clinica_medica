@@ -12,6 +12,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 		version = "1",
 		description = "API desenvolvida para clinica medica ")
 )
+@EnableScheduling()
 public class ClinicaMedicaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ClinicaMedicaApplication.class, args);

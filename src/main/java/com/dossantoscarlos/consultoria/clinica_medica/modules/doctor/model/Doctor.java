@@ -38,6 +38,6 @@ public class Doctor {
 	private String cpf;
 	
 	@OneToMany
-	private List<Schedule> agenda;
+	private List<Schedule> schedules;
 	
 }

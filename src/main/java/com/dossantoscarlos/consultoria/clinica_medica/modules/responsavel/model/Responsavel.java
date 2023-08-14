@@ -24,17 +24,14 @@ public class Responsavel {
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private UUID id;
 	
-	@Column(length=100)
 	private String nome;
-	
-	@Column(length=255)
 	private String sobrenome;
 	
 	@Column(columnDefinition = "date")
 	private Date dataNascimento;
 	
 	@Enumerated(EnumType.STRING)
-	@Column(columnDefinition = "varchar", length = 255)
+	@Column(columnDefinition = "varchar")
 	private VinculoEnum vinculo;
 	
 }
