@@ -24,13 +24,11 @@ public class HandlerResponseExceptionApiController extends MessageError {
         return handleMessage(ex.getMessage());
     }
 
-
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(ServletRequestBindingException.class)
     public Map<String, String> handleServletRequestBindingException(ServletRequestBindingException ex) {
         return handleMessage(ex.getMessage());
     }
-
 
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     @ExceptionHandler(TransactionSystemException.class)
@@ -43,8 +41,7 @@ public class HandlerResponseExceptionApiController extends MessageError {
     public Map<String, String> handleMissingPathVariableException(MissingPathVariableException ex) {
 		return handleMessage(ex.getMessage());
     }
-	
-	
+
 	@ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     @ExceptionHandler(OptimisticLockingFailureException.class)
     public Map<String, String> handleOptimisticLockingFailureExceptions(OptimisticLockingFailureException ex) {
