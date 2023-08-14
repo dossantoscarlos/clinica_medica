@@ -20,7 +20,7 @@ public class ConsultaController {
     @Autowired
     ConsultaService service;
 
-    @GetMapping
+    @GetMapping()
     public List<Consulta> pegaTodasConsulta() {
         return service.repository.findAll(); 
     }
@@ -31,7 +31,7 @@ public class ConsultaController {
          return consulta.orElseThrow();
     }
     
-    @PostMapping
+    @PostMapping()
     public Consulta salvaConsulta(@RequestBody @Valid Consulta model) {
         return service.repository.save(model); 
     }
