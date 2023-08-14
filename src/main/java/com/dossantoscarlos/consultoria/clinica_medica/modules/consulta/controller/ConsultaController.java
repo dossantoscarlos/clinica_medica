@@ -14,7 +14,7 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value="/api/v1/consultas", produces = {"application/json"})
-@Tag(name = "Consulta" , description = "Rotas de consulta" , extensions = {})
+@Tag(name = "Consulta" , description = "Rotas de consulta" )
 public class ConsultaController {
     
     @Autowired
@@ -26,9 +26,9 @@ public class ConsultaController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Consulta> getConsultaOne(@RequestAttribute String id ) {
-        UUID uuid = UUID.fromString(id);
-        return service.repository.findById(uuid);
+    public Consulta getConsultaOne(@RequestAttribute UUID id ) {
+         var consulta = service.repository.findById(id);
+         return consulta.orElseThrow();
     }
     
     @PostMapping
