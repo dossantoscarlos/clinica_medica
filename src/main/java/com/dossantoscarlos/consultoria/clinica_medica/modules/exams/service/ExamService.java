@@ -1,8 +1,10 @@
 package com.dossantoscarlos.consultoria.clinica_medica.modules.exams.service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import com.dossantoscarlos.consultoria.clinica_medica.modules.exams.dto.ExamDTO;
 import com.dossantoscarlos.consultoria.clinica_medica.modules.exams.dto.ExamUpdateDTO;
 import com.dossantoscarlos.consultoria.clinica_medica.modules.exams.model.Exam;
 import com.dossantoscarlos.consultoria.clinica_medica.modules.exams.repository.ExamRepository;
@@ -12,27 +14,45 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service
-@Component
-@Slf4j
 public class ExamService {
 	
 	@Autowired
-	public ExamRepository repository;
-	
-	public Exam update(ExamUpdateDTO exameDTO, UUID uuid) {
-		Optional<Exam> findExame = repository.findById(uuid);
-		Exam examModel = findExame.orElseThrow();
-		examModel.setNome(exameDTO.nome());
-		examModel.setDescricaoLonga(exameDTO.descricaoLonga());
-		examModel.setDescricaoCurta(exameDTO.descricaoCurta());
-		return repository.saveAndFlush(examModel);
+	private ExamRepository repository;
+
+	public Exam save(ExamDTO examDTO) {
+		return this.repository.saveAndFlush(this.examCreateDTOConvertExam(examDTO));
+	}
+
+	public Exam update(ExamUpdateDTO exameUpdateDTO, UUID uuid) {
+		var findExam = this.repository.findById(uuid).orElseThrow();
+		return this.repository.saveAndFlush(this.examUpdateDTOConvertExam(findExam, exameUpdateDTO));
 	}
 	
 	public String delete( UUID id ) {
-		Optional<Exam> exame = repository.findById(id);
-		Exam examModel = exame.orElseThrow();
-		repository.delete(examModel);
+		repository.deleteById(id);
 		return "OK";
 	}
-	
+
+	public List<Exam> findAll() {
+		return this.repository.findAll();
+	}
+
+	public Exam findById(UUID id) {
+		return this.repository.findById(id).orElseThrow();
+	}
+
+	private Exam examCreateDTOConvertExam(ExamDTO examDTO) {
+		Exam exam = new Exam();
+		exam.setNome(examDTO.nome());
+		exam.setDescricaoCurta(examDTO.descricaoCurta());
+		exam.setDescricaoLonga(examDTO.descricaoLonga());
+		return exam;
+	}
+
+	private Exam examUpdateDTOConvertExam(Exam examUpdate, ExamUpdateDTO examUpdateDTO) {
+		examUpdate.setNome(examUpdateDTO.nome());
+		examUpdate.setDescricaoCurta(examUpdateDTO.descricaoCurta());
+		examUpdate.setDescricaoLonga(examUpdateDTO.descricaoLonga());
+		return examUpdate;
+	}
 }

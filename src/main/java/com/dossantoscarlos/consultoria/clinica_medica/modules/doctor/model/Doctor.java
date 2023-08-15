@@ -21,20 +21,11 @@ public class Doctor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private UUID id;
-	
-	@Column
+
 	private String nome;
-	
-	@Column
 	private String sobrenome;
-	
-	@Column
 	private String crm;
-	
-	@Column
 	private String rg;
-	
-	@Column 
 	private String cpf;
 	
 	@OneToMany

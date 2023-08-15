@@ -11,8 +11,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Service
-@Slf4j
-@Component
 public class ResponsavelService {
 	
 	@Autowired

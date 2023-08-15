@@ -1,11 +1,11 @@
-package com.dossantoscarlos.consultoria.clinica_medica.modules.paciente.dto;
+package com.dossantoscarlos.consultoria.clinica_medica.modules.patient.dto;
 
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 
-public record PacienteDTO(
+public record PatientDTO(
 		@NotBlank @JsonProperty(value = "nome") String nome,
 		@NotBlank @JsonProperty(value = "Data nascimento") Date dataNascimento,
 		@NotBlank @JsonProperty(value = "RG") String rg,

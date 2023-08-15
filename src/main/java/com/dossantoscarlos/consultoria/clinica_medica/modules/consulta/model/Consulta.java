@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 import java.util.UUID;
 
+import com.dossantoscarlos.consultoria.clinica_medica.modules.patient.model.Patient;
 import com.dossantoscarlos.consultoria.clinica_medica.modules.schedule.model.Schedule;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,21 +24,13 @@ public class Consulta {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column()
     private Date diaConsulta;
-    
-    @Column()
     private String horaConsulta;
-
-    @Column()
     private String medicoId;
-    
-    @Column()
-    private String exameId;
-    
-    @Column()
-    private String pacienteId;
-    
+
+    @OneToMany
+    private List<Patient> patient;
+
     @OneToMany
     private List<Schedule> agenda;
 }

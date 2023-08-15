@@ -3,7 +3,7 @@ package com.dossantoscarlos.consultoria.clinica_medica.modules.responsavel.model
 import java.sql.Date;
 import java.util.UUID;
 
-import com.dossantoscarlos.consultoria.clinica_medica.modules.paciente.enums.VinculoEnum;
+import com.dossantoscarlos.consultoria.clinica_medica.modules.patient.enums.VinculoEnum;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

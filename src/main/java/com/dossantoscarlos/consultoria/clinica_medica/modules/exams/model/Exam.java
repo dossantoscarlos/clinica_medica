@@ -20,16 +20,12 @@ public class Exam {
 	@GeneratedValue(strategy = GenerationType.UUID)
 	private UUID id;
 
-	@Column
-	@NotBlank
 	private String nome;
 	
 	@Column(length = 100 )
-	@NotBlank
 	private String descricaoCurta;
 	
 	@Column(columnDefinition = "text")
-	@NotBlank
 	private String descricaoLonga;
 		
 }

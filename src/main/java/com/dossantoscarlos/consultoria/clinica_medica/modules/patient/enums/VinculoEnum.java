@@ -1,4 +1,4 @@
-package com.dossantoscarlos.consultoria.clinica_medica.modules.paciente.enums;
+package com.dossantoscarlos.consultoria.clinica_medica.modules.patient.enums;
 
 public enum VinculoEnum {
 	PAI,

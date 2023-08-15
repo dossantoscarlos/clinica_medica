@@ -26,13 +26,13 @@ public class ConsultaController {
     }
 
     @GetMapping("/{id}")
-    public Consulta getConsultaOne(@RequestAttribute UUID id ) {
+    public Consulta getConsultaOne(@PathVariable UUID id ) {
          var consulta = service.repository.findById(id);
          return consulta.orElseThrow();
     }
     
     @PostMapping()
-    public Consulta salvaConsulta(@RequestBody @Valid Consulta model) {
+    public Consulta salvaConsulta(@Valid @RequestBody Consulta model) {
         return service.repository.save(model); 
     }
 

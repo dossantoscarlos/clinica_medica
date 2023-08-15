@@ -2,7 +2,7 @@ package com.dossantoscarlos.consultoria.clinica_medica.modules.responsavel.dto;
 
 import java.sql.Date;
 
-import com.dossantoscarlos.consultoria.clinica_medica.modules.paciente.enums.VinculoEnum;
+import com.dossantoscarlos.consultoria.clinica_medica.modules.patient.enums.VinculoEnum;
 
 import jakarta.validation.constraints.NotBlank;
 
