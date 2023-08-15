@@ -3,6 +3,8 @@ spring:
     url: jdbc:postgresql://localhost:5432/clinica
     username: postgres
     password: carlos
+  devtools:
+    add-properties: false
   jpa:
     show-sql: true
     generate-ddl: true
@@ -13,3 +15,5 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
+
+
